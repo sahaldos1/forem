@@ -9,6 +9,14 @@ export const EditorBody = ({
   switchHelpContext,
   version,
 }) => {
+  let inputText = document.getElementById('article_body_markdown');
+
+  function getValue() {
+    let inputValue = inputText.value;
+    console.log(inputValue);
+    document.getElementById('count').innerHTML = inputValue.split(' ').length;
+  }
+
   return (
     <div
       data-testid="article-form__body"
@@ -27,7 +35,14 @@ export const EditorBody = ({
           switchHelpContext(_event);
         }}
         name="body_markdown"
+        onChange={getValue}
       />
+
+      <div class="crayons-card">
+        <div class="crayons-card__body">
+          <p id="count"> words</p>
+        </div>
+      </div>
     </div>
   );
 };
