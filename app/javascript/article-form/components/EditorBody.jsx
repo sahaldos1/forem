@@ -11,10 +11,17 @@ export const EditorBody = ({
 }) => {
   let inputText = document.getElementById('article_body_markdown');
 
-  function getValue() {
-    let inputValue = inputText.value;
-    console.log(inputValue);
-    document.getElementById('count').innerHTML = inputValue.split(' ').length;
+  let wordCount = document.getElementById('count');
+
+  if (inputText) {
+    inputText.addEventListener('keyup', function () {
+      let words = inputText.value.match(/\b[-?(\w+)?]+\b/gi);
+      if (words) {
+        wordCount.innerHTML = words.length;
+      } else {
+        wordCount.innerHTML = 0;
+      }
+    });
   }
 
   return (
@@ -35,12 +42,13 @@ export const EditorBody = ({
           switchHelpContext(_event);
         }}
         name="body_markdown"
-        onChange={getValue}
       />
 
       <div class="crayons-card">
         <div class="crayons-card__body">
-          <p id="count"> words</p>
+          <div>
+            Words: <span id="count"> </span>
+          </div>
         </div>
       </div>
     </div>
