@@ -46,8 +46,11 @@ export const EditorBody = ({
 
       <div class="crayons-card">
         <div class="crayons-card__body">
-          <div>
-            Words: <span id="count"> </span>
+          <div style="color:grey;">
+            Words:{' '}
+            <span id="count" style="color:grey;">
+              {' '}
+            </span>
           </div>
         </div>
       </div>
